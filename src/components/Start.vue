@@ -15,6 +15,6 @@
     top: 0;
     left: 0;
     width: 100vw;
-    background: linear-gradient(to bottom right, #ff8a00, #e52e71); /* Градиентный фон */
+    background: linear-gradient(to bottom right, #ff8a00, #e52e71);
   }
   </style>

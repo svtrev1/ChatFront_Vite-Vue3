@@ -53,13 +53,15 @@ export default {
 </script>
 
 <template>
+  <div class="lol">
     <div class="registration-container">
       <form @submit.prevent="register" class="registration-form">
         <h2 style="color: black;">Регистрация</h2>
         <img src="../assets/logo.png" alt="Лого" class="logo">
         <input type="text" placeholder="Login" v-model="regUsername" class="form-input">
         <input type="password" placeholder="Password" v-model="regPassword" class="form-input">
-        <button type="submit" @click="register" class="submit-button">Register</button>
+        <button type="submit" @click="register" class="submit-button">REGISTER</button>
+        <h1 style="color: orange;">Есть аккаунт? <br><router-link style="color: #ed5624;" to="/login">Авторизация</router-link></h1>
       </form>
       <!-- Модальное окно -->
       <div v-if="isErrorModalVisible" class="error-modal">
@@ -67,11 +69,18 @@ export default {
         <button @click="closeModal" style="background-color: aliceblue; color: #f06f44; font-size: 25px;">Close</button>
       </div>
     </div>
+  </div>
 </template>
   
 <style>
+.lol {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom right, #ff8a00, #e52e71);
+}
 .registration-container {
   background-color: antiquewhite;
+  
   position: absolute;
   top: 50%;
   left: 50%;

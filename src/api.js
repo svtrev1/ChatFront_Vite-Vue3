@@ -58,3 +58,25 @@ export const getUserChats = async (user_id) => {
         throw error;
     }
 }
+
+export const getChatIdByName = async (chatname) => {
+    try {
+        const response = await axios.get('https://localhost:7115/Chat/getChatIdByName', {params:{chatname}});
+        if (response.data === "Chat not found")
+        {
+            throw new Error("Chat not found");
+        }
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getMessagesByChatId = async (chat_id) => {
+    try {
+        const response = await axios.get('https://localhost:7115/Message/messages', {params:{chat_id}});
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
