@@ -13,24 +13,37 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
+import { useSignalR } from "@dreamonkey/vue-signalr";
 import { getMessagesByChatId } from '../api';
-import { onMounted } from '@vue/runtime-core'; 
 
 export default {
-  setup() {
+  props: ['selectedChat'],
+  // onMounted(async (dsas) => {
+  // const signalr = useSignalR();
+
+  // signalr.on("my-event", (x) => {
+
+  // })
+  // ),
+  setup(props, { emit }) {
     const messages = ref([]);
-
-    // Используем onMounted напрямую здесь
-    onMounted(async () => {
-      try {
-        const chat_id = JSON.parse(localStorage.getItem('select_chat_id'));
-        messages.value = await getMessagesByChatId(chat_id); // Передаем нужный chat_id здесь
-      } catch (error) {
-        console.error('Error fetching messages:', error);
+    const signalr= useSignalR();
+    signalr.on("ReceiveMessage", (message) => {
+      messages.value.push(message);
+    })
+    watch(() => props.selectedChat, async (newChatId) => {
+      if (newChatId) {
+        try {
+          messages.value = await getMessagesByChatId(newChatId);
+        } catch (error) {
+          messages.value = null;
+          console.error(error);
+          emit('show-error-modal', error.response.data);
+        
+        }
       }
-    });
-
+    }), { immediate: true };
     return {
       messages
     };

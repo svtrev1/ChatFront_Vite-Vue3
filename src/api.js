@@ -80,3 +80,13 @@ export const getMessagesByChatId = async (chat_id) => {
         throw error;
     }
 }
+
+export const addMessage = async (chat_id, content, user_id) => 
+{
+    try {
+        const response = await axios.post('https://localhost:7115/Message/addMessage', null, {params:{chat_id, content, user_id}});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
