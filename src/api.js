@@ -90,3 +90,22 @@ export const addMessage = async (chat_id, content, user_id) =>
         throw error;
     }
 }
+
+export const getChatNameByChatId = async (chat_id) => {
+    try {
+        const response = await axios.get('https://localhost:7115/Chat/getChatNameById', {params:{chat_id}});
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const addUserInChat = async (chat_id, username) => 
+{
+    try {
+        const response = await axios.post('https://localhost:7115/Chat/addUserInChat', null, {params:{chat_id, username}});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
