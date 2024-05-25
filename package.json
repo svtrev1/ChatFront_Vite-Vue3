@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@dreamonkey/vue-signalr": "^1.1.0",
-    "@microsoft/signalr": "^8.0.0",
+    "@microsoft/signalr": "^7.0.0",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "vue": "^3.4.19",
